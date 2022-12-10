@@ -1,6 +1,6 @@
 $(document).ready(function(){
     // console.log("testing");
     // alert("hello");
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('accessToken');
     location.replace('index.html');
 });
