@@ -12,7 +12,16 @@ function formatRupiah(bilangan) {
     return rupiah;
   }
 
+function tipe_data(tipe){
+    if(tipe==0){
+        return "Top-up";
+    }else if(tipe==1){
+        return "Transaksi";
+    }
+}
+
 function history(){
+    // alert("hello");
     var settings = {
         "url": "php/history.php",
         "type": "POST",
@@ -27,8 +36,19 @@ function history(){
         response = response.slice(0,-3); 
         console.log(status);
         var data = JSON.parse(response);
-        console.log(data);
+        console.log(data[0]);
         console.log(data.length);
+        var text_html="";
+        for (let i = 0; i < data.length; i++) {
+            text_html+='<div class="text-body d-flex bg-light">'+
+                    '<p class="m-3 col-3">'+data[i]['createdAt'].slice(0,10)+' </p>'+
+                    '<p class="m-3 col">'+data[i]['createdAt'].slice(11,19)+'</p>'+
+                    '<p class="m-3 col">Rp. '+formatRupiah(data[i]['amount'])+'</p>'+
+                    '<p class="m-3 col-2">'+tipe_data(data[i]['id_status'])+'</p>'+
+                '</div>'
+          }
+        
+        document.getElementById("body_table").innerHTML = text_html;
         // if(status==200){
         //     // console.log("ok");
         //     // console.log(data['accessToken']);
