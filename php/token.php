@@ -4,7 +4,7 @@ if(isset($_POST)){
   $bearer = 'Authorization: Bearer '.$_POST["accessToken"];
 
   curl_setopt_array($curl, array(
-    CURLOPT_URL => 'http://localhost:3000/profile',
+    CURLOPT_URL => 'http://localhost:8080/profile',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
